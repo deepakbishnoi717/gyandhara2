@@ -1,0 +1,114 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --color-primary-glow: var(--primary-glow);
+  --font-display: "Poppins", "Inter", sans-serif;
+  --font-sans: "Inter", system-ui, sans-serif;
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+  --radius-3xl: calc(var(--radius) + 12px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+}
+
+:root {
+  --radius: 0.75rem;
+  --background: oklch(0.99 0.005 240);
+  --foreground: oklch(0.18 0.04 250);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.18 0.04 250);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.18 0.04 250);
+  --primary: oklch(0.48 0.18 258);
+  --primary-foreground: oklch(0.99 0.005 240);
+  --primary-glow: oklch(0.62 0.2 258);
+  --secondary: oklch(0.96 0.015 250);
+  --secondary-foreground: oklch(0.22 0.06 258);
+  --muted: oklch(0.96 0.012 250);
+  --muted-foreground: oklch(0.5 0.03 255);
+  --accent: oklch(0.78 0.16 75);
+  --accent-foreground: oklch(0.2 0.05 80);
+  --destructive: oklch(0.6 0.22 27);
+  --destructive-foreground: oklch(0.99 0.005 240);
+  --border: oklch(0.92 0.012 250);
+  --input: oklch(0.93 0.012 250);
+  --ring: oklch(0.48 0.18 258);
+  --sidebar: oklch(0.99 0.005 240);
+  --sidebar-foreground: oklch(0.18 0.04 250);
+  --sidebar-primary: oklch(0.48 0.18 258);
+  --sidebar-primary-foreground: oklch(0.99 0.005 240);
+  --sidebar-accent: oklch(0.96 0.015 250);
+  --sidebar-accent-foreground: oklch(0.22 0.06 258);
+  --sidebar-border: oklch(0.92 0.012 250);
+  --sidebar-ring: oklch(0.48 0.18 258);
+
+  --gradient-primary: linear-gradient(135deg, oklch(0.48 0.18 258), oklch(0.62 0.2 258));
+  --gradient-hero: linear-gradient(135deg, oklch(0.28 0.12 258) 0%, oklch(0.42 0.18 258) 55%, oklch(0.6 0.2 258) 100%);
+  --gradient-accent: linear-gradient(135deg, oklch(0.78 0.16 75), oklch(0.85 0.14 85));
+  --shadow-soft: 0 4px 20px -8px oklch(0.48 0.18 258 / 0.25);
+  --shadow-elegant: 0 20px 60px -20px oklch(0.48 0.18 258 / 0.4);
+  --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+  }
+  h1, h2, h3, h4, h5 {
+    font-family: var(--font-display);
+    letter-spacing: -0.02em;
+  }
+}
+
+@utility bg-gradient-hero {
+  background-image: var(--gradient-hero);
+}
+@utility bg-gradient-primary {
+  background-image: var(--gradient-primary);
+}
+@utility bg-gradient-accent {
+  background-image: var(--gradient-accent);
+}
+@utility shadow-elegant {
+  box-shadow: var(--shadow-elegant);
+}
+@utility shadow-soft {
+  box-shadow: var(--shadow-soft);
+}
