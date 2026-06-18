@@ -163,12 +163,10 @@ export function WhatsAppButton() {
 export default function Layout({ children }: { children: ReactNode }) {
   return (
     <div className="flex min-h-screen flex-col selection:bg-cyan-500/30">
-      <Header />
       <main className="flex-1 relative z-10">
         {children}
       </main>
       <Footer />
-      <WhatsAppButton />
     </div>
   );
 }
