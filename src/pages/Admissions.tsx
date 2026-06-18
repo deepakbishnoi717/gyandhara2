@@ -115,7 +115,7 @@ export default function Admissions() {
                   <SelectTrigger className="neon-input border-0 h-[48px] bg-slate-900/50">
                     <SelectValue placeholder="Select Module" />
                   </SelectTrigger>
-                  <SelectContent className="bg-slate-900 border-cyan-500/20 text-slate-300">
+                  <SelectContent className="bg-slate-900 border-cyan-500/20 text-slate-300 z-[9999]">
                     {courses.map((c) => <SelectItem key={c.slug} value={c.title} className="focus:bg-cyan-500 focus:text-slate-950">{c.title}</SelectItem>)}
                   </SelectContent>
                 </Select>

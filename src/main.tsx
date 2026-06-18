@@ -37,7 +37,7 @@ const AnimatedRoutes = () => {
     else if (index === 1) setRotation({ y: -90, x: 0 });
     else if (index === 2) setRotation({ y: -180, x: 0 });
     else if (index === 3) setRotation({ y: -270, x: 0 });
-    else if (index === 4) setRotation({ y: 0, x: -90 }); 
+    else if (index === 4) setRotation({ y: -360, x: 0 }); 
 
     setTimeout(() => {
       const faceClass = index === 4 ? ".face-contact" : `.face-${["home", "about", "courses", "admissions"][index]}`;
@@ -120,7 +120,6 @@ const AnimatedRoutes = () => {
           top: 0;
           left: 0;
           z-index: 10;
-          pointer-events: none;
         }
 
         .cube-container {
@@ -139,22 +138,25 @@ const AnimatedRoutes = () => {
           overflow-y: auto;
           overflow-x: hidden;
           scroll-behavior: smooth;
+          -webkit-overflow-scrolling: touch;
           backface-visibility: hidden;
           -webkit-backface-visibility: hidden;
           background: transparent;
-          transition: opacity 0.85s ease;
+          transition: opacity 0.85s ease, visibility 0.85s ease;
         }
 
         .active-face {
           pointer-events: auto !important;
-          z-index: 100;
+          z-index: 10;
           opacity: 1;
+          visibility: visible;
         }
 
         .inactive-face {
           pointer-events: none !important;
           z-index: 0;
-          opacity: 0.15;
+          opacity: 0;
+          visibility: hidden;
         }
 
         /* 3D Face Positions */
@@ -162,8 +164,8 @@ const AnimatedRoutes = () => {
         .face-about      { transform: rotateY(90deg) translateZ(50vw); }
         .face-courses    { transform: rotateY(180deg) translateZ(50vw); }
         .face-admissions { transform: rotateY(270deg) translateZ(50vw); }
-        .face-contact    { transform: rotateX(90deg) translateZ(50vw); }
-        .face-notfound   { transform: translateZ(51vw); background: #020817; z-index: 200; pointer-events: auto; }
+        .face-contact    { transform: rotateY(360deg) translateZ(50vw); }
+        .face-notfound   { transform: translateZ(51vw); background: #020817; z-index: 20; pointer-events: auto; }
 
         .cube-face::-webkit-scrollbar { width: 4px; }
         .cube-face::-webkit-scrollbar-track { background: rgba(2, 8, 23, 0.5); }
@@ -174,7 +176,7 @@ const AnimatedRoutes = () => {
            .face-about      { transform: rotateY(90deg) translateZ(50vw); }
            .face-courses    { transform: rotateY(180deg) translateZ(50vw); }
            .face-admissions { transform: rotateY(270deg) translateZ(50vw); }
-           .face-contact    { transform: rotateX(90deg) translateZ(50vw); }
+           .face-contact    { transform: rotateY(360deg) translateZ(50vw); }
         }
       `}</style>
     </div>
