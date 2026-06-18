@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { Helmet } from "react-helmet-async";
 import Layout from "@/components/Layout";
-import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -56,100 +55,94 @@ export default function Admissions() {
     <Layout>
       <Helmet>
         <title>Admissions — Apply Online | Gyan Dhara Institute Tohana</title>
-        <meta name="description" content="Apply online for HKCL certified computer courses at Gyan Dhara Institute Tohana. View fee structure, important dates and download brochure." />
-        <meta property="og:title" content="Admissions Open — Gyan Dhara Institute Tohana" />
-        <meta property="og:description" content="Online enrollment, fee structure and brochure download for Tohana's trusted computer institute." />
+        <meta name="description" content="Apply online for HKCL certified computer courses at Gyan Dhara Institute Tohana." />
       </Helmet>
-      <section className="bg-gradient-hero text-primary-foreground py-14">
-        <div className="mx-auto max-w-7xl px-4">
-          <Badge className="bg-accent text-accent-foreground mb-3">Admissions Open</Badge>
-          <h1 className="font-display text-4xl sm:text-5xl font-bold">Begin your journey today</h1>
-          <p className="mt-3 opacity-90 max-w-2xl">Apply online in less than a minute. We'll get back to you within 24 hours.</p>
+      
+      <section className="relative py-20 bg-slate-950 overflow-hidden">
+        <div className="absolute inset-0 opacity-10" style={{ backgroundImage: "radial-gradient(circle at 50% 50%, #10b981 1px, transparent 1px)", backgroundSize: "30px 30px" }} />
+        <div className="mx-auto max-w-7xl px-4 relative z-10">
+          <Badge className="bg-emerald-500 text-slate-950 font-bold mb-4 uppercase tracking-widest text-[10px]">Access Granted</Badge>
+          <h1 className="font-display text-4xl sm:text-6xl font-bold text-white">Initialize Your <br /><span className="text-cyan-400">Digital Protocol</span></h1>
+          <p className="mt-4 text-slate-400 max-w-2xl text-lg">Online enrollment is active. Join the next-gen learning environment in Tohana.</p>
         </div>
       </section>
 
-      <div className="mx-auto max-w-7xl px-4 py-14 grid lg:grid-cols-5 gap-10">
-        <Card className="lg:col-span-3 shadow-elegant border-border">
-          <CardContent className="p-7">
-            <h2 className="font-display text-2xl font-bold mb-1">Enrollment Form</h2>
-            <p className="text-sm text-muted-foreground mb-6">Fill in your details and our team will reach out.</p>
-            <form onSubmit={submit} className="grid gap-4">
-              <div className="grid sm:grid-cols-2 gap-4">
-                <div className="grid gap-1.5">
-                  <Label htmlFor="name">Full Name *</Label>
-                  <Input id="name" value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })} placeholder="Your name" required />
-                </div>
-                <div className="grid gap-1.5">
-                  <Label htmlFor="phone">Phone *</Label>
-                  <Input id="phone" value={form.phone} onChange={(e) => setForm({ ...form, phone: e.target.value })} placeholder="10-digit mobile" required />
-                </div>
+      <div className="mx-auto max-w-7xl px-4 py-16 grid lg:grid-cols-5 gap-12">
+        <div className="lg:col-span-3 glass-panel p-8 rounded-2xl relative overflow-hidden group">
+          <div className="absolute top-0 left-0 w-1 h-full bg-gradient-to-b from-cyan-500 to-emerald-500"></div>
+          <h2 className="font-display text-2xl font-bold mb-2 text-white">Enrollment Form</h2>
+          <p className="text-sm text-slate-500 mb-8 font-bold uppercase tracking-widest">Submit your credentials below</p>
+          
+          <form onSubmit={submit} className="grid gap-6">
+            <div className="grid sm:grid-cols-2 gap-6">
+              <div className="grid gap-2">
+                <Label htmlFor="name" className="text-xs font-bold uppercase tracking-widest text-slate-400">Full Name *</Label>
+                <Input id="name" value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })} placeholder="John Doe" required />
               </div>
-              <div className="grid sm:grid-cols-2 gap-4">
-                <div className="grid gap-1.5">
-                  <Label htmlFor="email">Email</Label>
-                  <Input id="email" type="email" value={form.email} onChange={(e) => setForm({ ...form, email: e.target.value })} placeholder="you@example.com" />
-                </div>
-                <div className="grid gap-1.5">
-                  <Label>Course Interest *</Label>
-                  <Select value={form.course} onValueChange={(v) => setForm({ ...form, course: v })}>
-                    <SelectTrigger><SelectValue placeholder="Select a course" /></SelectTrigger>
-                    <SelectContent>
-                      {courses.map((c) => <SelectItem key={c.slug} value={c.title}>{c.title}</SelectItem>)}
-                    </SelectContent>
-                  </Select>
-                </div>
+              <div className="grid gap-2">
+                <Label htmlFor="phone" className="text-xs font-bold uppercase tracking-widest text-slate-400">Secure Line *</Label>
+                <Input id="phone" value={form.phone} onChange={(e) => setForm({ ...form, phone: e.target.value })} placeholder="10-digit mobile" required />
               </div>
-              <div className="grid gap-1.5">
-                <Label htmlFor="address">Address</Label>
-                <Input id="address" value={form.address} onChange={(e) => setForm({ ...form, address: e.target.value })} placeholder="Village / City, Tohana" />
+            </div>
+            <div className="grid sm:grid-cols-2 gap-6">
+              <div className="grid gap-2">
+                <Label htmlFor="email" className="text-xs font-bold uppercase tracking-widest text-slate-400">Digital Mail</Label>
+                <Input id="email" type="email" value={form.email} onChange={(e) => setForm({ ...form, email: e.target.value })} placeholder="you@example.com" />
               </div>
-              <div className="grid gap-1.5">
-                <Label htmlFor="msg">Message</Label>
-                <Textarea id="msg" value={form.message} onChange={(e) => setForm({ ...form, message: e.target.value })} placeholder="Any questions?" rows={3} />
+              <div className="grid gap-2">
+                <Label className="text-xs font-bold uppercase tracking-widest text-slate-400">Neural Node Interest *</Label>
+                <Select value={form.course} onValueChange={(v) => setForm({ ...form, course: v })}>
+                  <SelectTrigger className="bg-slate-900/50 border-slate-800 text-slate-300"><SelectValue placeholder="Select Module" /></SelectTrigger>
+                  <SelectContent className="bg-slate-900 border-slate-800 text-slate-300">
+                    {courses.map((c) => <SelectItem key={c.slug} value={c.title} className="focus:bg-cyan-500 focus:text-slate-950">{c.title}</SelectItem>)}
+                  </SelectContent>
+                </Select>
               </div>
-              <Button type="submit" disabled={loading} size="lg" className="bg-gradient-primary hover:opacity-95">
-                {loading ? "Submitting..." : "Submit Application"}
-              </Button>
-            </form>
-          </CardContent>
-        </Card>
+            </div>
+            <div className="grid gap-2">
+              <Label htmlFor="address" className="text-xs font-bold uppercase tracking-widest text-slate-400">Physical Coordinates</Label>
+              <Input id="address" value={form.address} onChange={(e) => setForm({ ...form, address: e.target.value })} placeholder="Village / City, Tohana" />
+            </div>
+            <div className="grid gap-2">
+              <Label htmlFor="msg" className="text-xs font-bold uppercase tracking-widest text-slate-400">Transmission Notes</Label>
+              <Textarea id="msg" value={form.message} onChange={(e) => setForm({ ...form, message: e.target.value })} placeholder="Any specific requirements?" rows={4} />
+            </div>
+            <Button type="submit" disabled={loading} size="lg" className="bg-gradient-primary hover:opacity-90 text-slate-950 font-bold uppercase tracking-[0.2em] py-7 shadow-neon border-0 mt-4">
+              {loading ? "Transmitting..." : "Execute Enrollment"}
+            </Button>
+          </form>
+        </div>
 
-        <div className="lg:col-span-2 space-y-6">
-          <Card className="shadow-soft border-border">
-            <CardContent className="p-6">
-              <h3 className="font-display font-bold text-lg mb-3">Fee Structure</h3>
-              <div className="space-y-2 text-sm">
-                {courses.slice(0, 6).map((c) => (
-                  <div key={c.slug} className="flex justify-between border-b border-border last:border-0 py-2">
-                    <span className="text-muted-foreground">{c.title}</span>
-                    <span className="font-semibold text-primary">{c.fees}</span>
-                  </div>
-                ))}
-              </div>
-              <p className="text-xs text-muted-foreground mt-3">* EMI & installment options available</p>
-            </CardContent>
-          </Card>
+        <div className="lg:col-span-2 space-y-8">
+          <div className="glass-panel p-8 rounded-2xl border-white/5">
+            <h3 className="font-display font-bold text-lg mb-6 text-cyan-400 uppercase tracking-widest">Fee Protocols</h3>
+            <div className="space-y-4">
+              {courses.slice(0, 6).map((c) => (
+                <div key={c.slug} className="flex justify-between border-b border-white/5 pb-3 group">
+                  <span className="text-sm text-slate-400 group-hover:text-white transition-colors">{c.title}</span>
+                  <span className="font-bold text-emerald-400 text-sm">{c.fees}</span>
+                </div>
+              ))}
+            </div>
+            <p className="text-[10px] text-slate-500 mt-6 font-bold uppercase tracking-widest">* Multi-stage payment nodes available</p>
+          </div>
 
-          <Card className="shadow-soft border-border bg-gradient-primary text-primary-foreground">
-            <CardContent className="p-6">
-              <h3 className="font-display font-bold text-lg mb-3">Important Dates</h3>
-              <ul className="space-y-2 text-sm">
-                <li className="flex gap-2"><CheckCircle2 className="h-4 w-4 mt-0.5 text-accent flex-none" /> New batch starts: 1st of every month</li>
-                <li className="flex gap-2"><CheckCircle2 className="h-4 w-4 mt-0.5 text-accent flex-none" /> HS-CIT exam cycle: Quarterly</li>
-                <li className="flex gap-2"><CheckCircle2 className="h-4 w-4 mt-0.5 text-accent flex-none" /> Admission deadline: 25th of every month</li>
-              </ul>
-            </CardContent>
-          </Card>
+          <div className="bg-gradient-to-br from-cyan-600 to-emerald-600 p-8 rounded-2xl shadow-neon group">
+            <h3 className="font-display font-bold text-lg mb-4 text-slate-950 uppercase tracking-widest">Critical Cycles</h3>
+            <ul className="space-y-4 text-sm font-bold text-slate-900">
+              <li className="flex gap-3"><CheckCircle2 className="h-5 w-5 flex-none text-white/50" /> New batches: 01 of every month</li>
+              <li className="flex gap-3"><CheckCircle2 className="h-5 w-5 flex-none text-white/50" /> HS-CIT Exam: Quarterly cycles</li>
+              <li className="flex gap-3"><CheckCircle2 className="h-5 w-5 flex-none text-white/50" /> Deadline: 25th of month</li>
+            </ul>
+          </div>
 
-          <Card className="shadow-soft border-border">
-            <CardContent className="p-6">
-              <h3 className="font-display font-bold text-lg mb-2">Payment Options</h3>
-              <p className="text-sm text-muted-foreground mb-4">Cash, UPI, Bank Transfer, EMI</p>
-              <Button variant="outline" className="w-full" onClick={() => toast.info("Brochure coming soon. Call 81990-73036 for details.")}>
-                <Download className="mr-2 h-4 w-4" /> Download Brochure
-              </Button>
-            </CardContent>
-          </Card>
+          <div className="glass-panel p-8 rounded-2xl border-white/5 text-center group">
+            <h3 className="font-display font-bold text-lg mb-2 text-white">Digital Brochure</h3>
+            <p className="text-xs text-slate-500 mb-6 font-bold uppercase tracking-widest">System details & Curriculum</p>
+            <Button variant="outline" className="w-full border-slate-800 text-slate-400 hover:text-cyan-400 hover:bg-cyan-500/10 py-6" onClick={() => toast.info("Encryption active. Brochure coming soon.")}>
+              <Download className="mr-2 h-4 w-4" /> ACCESS DATA
+            </Button>
+          </div>
         </div>
       </div>
     </Layout>

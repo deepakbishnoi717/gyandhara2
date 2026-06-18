@@ -6,7 +6,7 @@ interface Ripple {
   y: number;
 }
 
-const RippleEffect: React.FC = () => {
+const CircuitRipple: React.FC = () => {
   const [ripples, setRipples] = useState<Ripple[]>([]);
 
   const addRipple = useCallback((e: MouseEvent) => {
@@ -16,7 +16,6 @@ const RippleEffect: React.FC = () => {
       y: e.clientY,
     };
     setRipples((prev) => [...prev, newRipple]);
-
     setTimeout(() => {
       setRipples((prev) => prev.filter((r) => r.id !== newRipple.id));
     }, 1000);
@@ -32,36 +31,30 @@ const RippleEffect: React.FC = () => {
       {ripples.map((ripple) => (
         <div
           key={ripple.id}
-          className="absolute rounded-full border border-cyan-500/50 animate-ripple-burst"
+          className="absolute animate-circuit-ripple"
           style={{
             left: ripple.x,
             top: ripple.y,
-            width: '0px',
-            height: '0px',
             transform: 'translate(-50%, -50%)',
-            boxShadow: '0 0 20px rgba(6, 182, 212, 0.5), inset 0 0 20px rgba(6, 182, 212, 0.5)',
           }}
-        />
+        >
+          <div className="absolute inset-0 rounded-full border-2 border-cyan-500 shadow-[0_0_20px_#06b6d4] scale-0 animate-pulse-fast" />
+          <div className="absolute inset-0 rounded-full border border-emerald-500/50 scale-0 animate-pulse-slow" />
+        </div>
       ))}
       <style>{`
-        @keyframes ripple-burst {
-          0% {
-            width: 0px;
-            height: 0px;
-            opacity: 1;
-          }
-          100% {
-            width: 500px;
-            height: 500px;
-            opacity: 0;
-          }
+        @keyframes circuit-ripple {
+          0% { transform: translate(-50%, -50%) scale(0); opacity: 1; }
+          100% { transform: translate(-50%, -50%) scale(4); opacity: 0; }
         }
-        .animate-ripple-burst {
-          animation: ripple-burst 0.8s ease-out forwards;
+        .animate-circuit-ripple {
+          width: 100px;
+          height: 100px;
+          animation: circuit-ripple 0.8s cubic-bezier(0, 0, 0.2, 1) forwards;
         }
       `}</style>
     </div>
   );
 };
 
-export default RippleEffect;
+export default CircuitRipple;
