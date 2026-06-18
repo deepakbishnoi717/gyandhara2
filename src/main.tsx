@@ -66,98 +66,120 @@ const AnimatedRoutes = () => {
         >
           {/* Face 1: Home */}
           <div className={`cube-face face-home ${activeIndex === 0 ? "active-face" : "inactive-face"}`}>
-            <Routes location={location}>
-              <Route path="/" element={<Home />} />
-            </Routes>
+            <div className="face-scroll-area">
+              <Routes location={location}>
+                <Route path="/" element={<Home />} />
+              </Routes>
+            </div>
           </div>
 
           {/* Face 2: About */}
           <div className={`cube-face face-about ${activeIndex === 1 ? "active-face" : "inactive-face"}`}>
-            <Routes location={location}>
-              <Route path="/about" element={<About />} />
-            </Routes>
+            <div className="face-scroll-area">
+              <Routes location={location}>
+                <Route path="/about" element={<About />} />
+              </Routes>
+            </div>
           </div>
 
           {/* Face 3: Courses */}
           <div className={`cube-face face-courses ${activeIndex === 2 ? "active-face" : "inactive-face"}`}>
-            <Routes location={location}>
-              <Route path="/courses" element={<Courses />} />
-            </Routes>
+            <div className="face-scroll-area">
+              <Routes location={location}>
+                <Route path="/courses" element={<Courses />} />
+              </Routes>
+            </div>
           </div>
 
           {/* Face 4: Admissions */}
           <div className={`cube-face face-admissions ${activeIndex === 3 ? "active-face" : "inactive-face"}`}>
-            <Routes location={location}>
-              <Route path="/admissions" element={<Admissions />} />
-            </Routes>
+            <div className="face-scroll-area">
+              <Routes location={location}>
+                <Route path="/admissions" element={<Admissions />} />
+              </Routes>
+            </div>
           </div>
 
           {/* Face 5: Contact (Top) */}
           <div className={`cube-face face-contact ${activeIndex === 4 ? "active-face" : "inactive-face"}`}>
-            <Routes location={location}>
-              <Route path="/contact" element={<Contact />} />
-            </Routes>
+            <div className="face-scroll-area">
+              <Routes location={location}>
+                <Route path="/contact" element={<Contact />} />
+              </Routes>
+            </div>
           </div>
 
           {/* NotFound Overlay */}
           {isNotFound && (
             <div className="cube-face face-notfound active-face">
-               <Routes location={location}>
-                 <Route path="*" element={<NotFound />} />
-               </Routes>
+               <div className="face-scroll-area">
+                 <Routes location={location}>
+                   <Route path="*" element={<NotFound />} />
+                 </Routes>
+               </div>
             </div>
           )}
-        </div>
-      </div>
+          </div>
+          </div>
 
-      <style>{`
-        .cube-viewport {
-          perspective: 2000px;
-          perspective-origin: 50% 50%;
-          width: 100vw;
-          height: 100vh;
-          position: absolute;
-          top: 0;
-          left: 0;
-          z-index: 10;
-        }
+          <style>{`
+          .cube-viewport {
+            perspective: 2000px;
+            perspective-origin: 50% 50%;
+            width: 100vw;
+            height: 100vh;
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 10;
+            pointer-events: none; /* Let clicks pass through to faces */
+          }
 
-        .cube-container {
-          width: 100%;
-          height: 100%;
-          position: relative;
-          transform-style: preserve-3d;
-          transition: transform 0.85s cubic-bezier(0.77, 0, 0.175, 1);
-          will-change: transform;
-        }
+          .cube-container {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            transform-style: preserve-3d;
+            transition: transform 0.85s cubic-bezier(0.77, 0, 0.175, 1);
+            will-change: transform;
+            pointer-events: none; /* Crucial for 90deg bounding box bug */
+          }
 
-        .cube-face {
-          position: absolute;
-          width: 100%;
-          height: 100%;
-          overflow-y: auto;
-          overflow-x: hidden;
-          scroll-behavior: smooth;
-          -webkit-overflow-scrolling: touch;
-          backface-visibility: hidden;
-          -webkit-backface-visibility: hidden;
-          background: transparent;
-          transition: opacity 0.85s ease, visibility 0.85s ease;
-        }
+          .cube-face {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            -webkit-backface-visibility: hidden;
+            background: transparent;
+            transition: opacity 0.85s ease, visibility 0.85s ease;
+          }
 
-        .active-face {
-          pointer-events: auto !important;
-          z-index: 10;
-          opacity: 1;
-          visibility: visible;
-        }
+          .face-scroll-area {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            overflow-y: auto;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+            -webkit-overflow-scrolling: touch;
+            transform: translateZ(0); /* Force compositing layer for hit-test bug */
+          }
 
-        .inactive-face {
-          pointer-events: none !important;
-          z-index: 0;
-          opacity: 0;
-          visibility: hidden;
-        }
+          .active-face {
+            pointer-events: auto !important;
+            z-index: 10;
+            opacity: 1;
+            visibility: visible;
+          }
+
+          .inactive-face {
+            pointer-events: none !important;
+            z-index: 0;
+            opacity: 0;
+            visibility: hidden;
+          }
 
         /* 3D Face Positions */
         .face-home       { transform: rotateY(0deg) translateZ(50vw); }
