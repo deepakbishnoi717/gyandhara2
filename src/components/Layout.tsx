@@ -27,24 +27,24 @@ export function Header() {
           </div>
         </div>
       </div>
-      <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-4">
-        <Link to="/" className="flex items-center gap-4 group">
-          <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-primary text-slate-950 font-display font-bold text-xl shadow-neon group-hover:rotate-[360deg] transition-transform duration-700">
+      <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-2">
+        <Link to="/" className="flex items-center gap-3 group">
+          <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-primary text-slate-950 font-display font-bold text-lg shadow-neon group-hover:rotate-[360deg] transition-transform duration-700">
             GD
           </div>
           <div className="leading-tight">
-            <div className="font-display text-lg font-bold text-white group-hover:text-cyan-400 transition-colors uppercase tracking-tight">Gyan Dhara Institute</div>
-            <div className="text-[10px] text-slate-500 group-hover:text-cyan-500 transition-colors uppercase tracking-[0.2em] font-bold">Tohana · HKCL Certified</div>
+            <div className="font-display text-base font-bold text-white group-hover:text-cyan-400 transition-colors uppercase tracking-tight">Gyan Dhara Institute</div>
+            <div className="text-[9px] text-slate-500 group-hover:text-cyan-500 transition-colors uppercase tracking-[0.2em] font-bold">Tohana · HKCL Certified</div>
           </div>
         </Link>
-        <nav className="hidden lg:flex items-center gap-2">
+        <nav className="hidden lg:flex items-center gap-1">
           {nav.map((n) => (
             <NavLink
               key={n.to}
               to={n.to}
               end={n.to === "/"}
               className={({ isActive }) =>
-                `px-5 py-2 text-[11px] font-bold uppercase tracking-[0.2em] rounded-lg transition-all duration-500 ${
+                `px-4 py-1.5 text-[10px] font-bold uppercase tracking-[0.2em] rounded-lg transition-all duration-500 ${
                   isActive 
                     ? "text-cyan-400 bg-cyan-500/10 border border-cyan-500/30 shadow-[0_0_20px_rgba(6,182,212,0.2)] text-shadow-neon" 
                     : "text-slate-400 hover:text-cyan-400 hover:bg-white/5"
@@ -56,11 +56,11 @@ export function Header() {
           ))}
         </nav>
         <div className="flex items-center gap-3">
-          <Link to="/admissions" className="btn-primary hidden sm:inline-flex py-3 px-6 text-[10px] uppercase tracking-widest">
+          <Link to="/admissions" className="btn-primary hidden sm:inline-flex py-2 px-5 text-[9px] uppercase tracking-widest">
             Enroll Now
           </Link>
-          <button className="lg:hidden p-2 text-slate-400 hover:text-cyan-400 transition-colors" onClick={() => setOpen(!open)} aria-label="Menu">
-            {open ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+          <button className="lg:hidden p-1 text-slate-400 hover:text-cyan-400 transition-colors" onClick={() => setOpen(!open)} aria-label="Menu">
+            {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
           </button>
         </div>
       </div>
