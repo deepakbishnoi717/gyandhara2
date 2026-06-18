@@ -58,90 +58,129 @@ export default function Admissions() {
         <meta name="description" content="Apply online for HKCL certified computer courses at Gyan Dhara Institute Tohana." />
       </Helmet>
       
-      <section className="relative py-20 bg-slate-950 overflow-hidden">
-        <div className="absolute inset-0 opacity-10" style={{ backgroundImage: "radial-gradient(circle at 50% 50%, #10b981 1px, transparent 1px)", backgroundSize: "30px 30px" }} />
+      <section className="relative py-24 bg-[#020817] overflow-hidden">
         <div className="mx-auto max-w-7xl px-4 relative z-10">
-          <Badge className="bg-emerald-500 text-slate-950 font-bold mb-4 uppercase tracking-widest text-[10px]">Access Granted</Badge>
-          <h1 className="font-display text-4xl sm:text-6xl font-bold text-white">Initialize Your <br /><span className="text-cyan-400">Digital Protocol</span></h1>
-          <p className="mt-4 text-slate-400 max-w-2xl text-lg">Online enrollment is active. Join the next-gen learning environment in Tohana.</p>
+          <Badge className="bg-emerald-500 text-slate-950 font-bold mb-6 uppercase tracking-[0.2em] text-[10px] py-1 px-3">Access Granted</Badge>
+          <h1 className="font-display text-5xl sm:text-7xl font-bold text-white neon-heading">Initialize Your <br /><span className="neon-accent">Digital Protocol</span></h1>
+          <p className="mt-6 text-slate-400 max-w-2xl text-xl border-l-2 border-cyan-500/30 pl-8 italic">Online enrollment is active. Join the next-gen learning environment in Tohana.</p>
         </div>
       </section>
 
-      <div className="mx-auto max-w-7xl px-4 py-16 grid lg:grid-cols-5 gap-12">
-        <div className="lg:col-span-3 glass-panel p-8 rounded-2xl relative overflow-hidden group">
-          <div className="absolute top-0 left-0 w-1 h-full bg-gradient-to-b from-cyan-500 to-emerald-500"></div>
-          <h2 className="font-display text-2xl font-bold mb-2 text-white">Enrollment Form</h2>
-          <p className="text-sm text-slate-500 mb-8 font-bold uppercase tracking-widest">Submit your credentials below</p>
+      <div className="mx-auto max-w-7xl px-4 py-20 grid lg:grid-cols-5 gap-16">
+        <div className="lg:col-span-3 glass-panel p-10 relative overflow-hidden group">
+          <div className="absolute top-0 left-0 w-1.5 h-full bg-gradient-to-b from-cyan-500 to-emerald-500 shadow-neon"></div>
+          <h2 className="font-display text-3xl font-bold mb-3 text-white">Enrollment Form</h2>
+          <p className="text-[10px] text-slate-500 mb-12 font-bold uppercase tracking-[0.3em]">Submit your credentials to the mainframe</p>
           
-          <form onSubmit={submit} className="grid gap-6">
-            <div className="grid sm:grid-cols-2 gap-6">
-              <div className="grid gap-2">
-                <Label htmlFor="name" className="text-xs font-bold uppercase tracking-widest text-slate-400">Full Name *</Label>
-                <Input id="name" value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })} placeholder="John Doe" required />
+          <form onSubmit={submit} className="grid gap-8">
+            <div className="grid sm:grid-cols-2 gap-8">
+              <div className="grid gap-3 group">
+                <Label htmlFor="name" className="text-[10px] font-bold uppercase tracking-[0.2em] text-slate-400 group-focus-within:text-cyan-400 transition-colors">Full Name *</Label>
+                <input 
+                  id="name" 
+                  className="neon-input" 
+                  value={form.name} 
+                  onChange={(e) => setForm({ ...form, name: e.target.value })} 
+                  placeholder="John Doe" 
+                  required 
+                />
               </div>
-              <div className="grid gap-2">
-                <Label htmlFor="phone" className="text-xs font-bold uppercase tracking-widest text-slate-400">Secure Line *</Label>
-                <Input id="phone" value={form.phone} onChange={(e) => setForm({ ...form, phone: e.target.value })} placeholder="10-digit mobile" required />
+              <div className="grid gap-3 group">
+                <Label htmlFor="phone" className="text-[10px] font-bold uppercase tracking-[0.2em] text-slate-400 group-focus-within:text-cyan-400 transition-colors">Secure Line *</Label>
+                <input 
+                  id="phone" 
+                  className="neon-input" 
+                  value={form.phone} 
+                  onChange={(e) => setForm({ ...form, phone: e.target.value })} 
+                  placeholder="10-digit mobile" 
+                  required 
+                />
               </div>
             </div>
-            <div className="grid sm:grid-cols-2 gap-6">
-              <div className="grid gap-2">
-                <Label htmlFor="email" className="text-xs font-bold uppercase tracking-widest text-slate-400">Digital Mail</Label>
-                <Input id="email" type="email" value={form.email} onChange={(e) => setForm({ ...form, email: e.target.value })} placeholder="you@example.com" />
+            <div className="grid sm:grid-cols-2 gap-8">
+              <div className="grid gap-3 group">
+                <Label htmlFor="email" className="text-[10px] font-bold uppercase tracking-[0.2em] text-slate-400 group-focus-within:text-cyan-400 transition-colors">Digital Mail</Label>
+                <input 
+                  id="email" 
+                  type="email" 
+                  className="neon-input" 
+                  value={form.email} 
+                  onChange={(e) => setForm({ ...form, email: e.target.value })} 
+                  placeholder="you@example.com" 
+                />
               </div>
-              <div className="grid gap-2">
-                <Label className="text-xs font-bold uppercase tracking-widest text-slate-400">Neural Node Interest *</Label>
+              <div className="grid gap-3 group">
+                <Label className="text-[10px] font-bold uppercase tracking-[0.2em] text-slate-400 group-focus-within:text-cyan-400 transition-colors">Neural Node Interest *</Label>
                 <Select value={form.course} onValueChange={(v) => setForm({ ...form, course: v })}>
-                  <SelectTrigger className="bg-slate-900/50 border-slate-800 text-slate-300"><SelectValue placeholder="Select Module" /></SelectTrigger>
-                  <SelectContent className="bg-slate-900 border-slate-800 text-slate-300">
+                  <SelectTrigger className="neon-input border-0 h-[48px] bg-slate-900/50">
+                    <SelectValue placeholder="Select Module" />
+                  </SelectTrigger>
+                  <SelectContent className="bg-slate-900 border-cyan-500/20 text-slate-300">
                     {courses.map((c) => <SelectItem key={c.slug} value={c.title} className="focus:bg-cyan-500 focus:text-slate-950">{c.title}</SelectItem>)}
                   </SelectContent>
                 </Select>
               </div>
             </div>
-            <div className="grid gap-2">
-              <Label htmlFor="address" className="text-xs font-bold uppercase tracking-widest text-slate-400">Physical Coordinates</Label>
-              <Input id="address" value={form.address} onChange={(e) => setForm({ ...form, address: e.target.value })} placeholder="Village / City, Tohana" />
+            <div className="grid gap-3 group">
+              <Label htmlFor="address" className="text-[10px] font-bold uppercase tracking-[0.2em] text-slate-400 group-focus-within:text-cyan-400 transition-colors">Physical Coordinates</Label>
+              <input 
+                id="address" 
+                className="neon-input" 
+                value={form.address} 
+                onChange={(e) => setForm({ ...form, address: e.target.value })} 
+                placeholder="Village / City, Tohana" 
+              />
             </div>
-            <div className="grid gap-2">
-              <Label htmlFor="msg" className="text-xs font-bold uppercase tracking-widest text-slate-400">Transmission Notes</Label>
-              <Textarea id="msg" value={form.message} onChange={(e) => setForm({ ...form, message: e.target.value })} placeholder="Any specific requirements?" rows={4} />
+            <div className="grid gap-3 group">
+              <Label htmlFor="msg" className="text-[10px] font-bold uppercase tracking-[0.2em] text-slate-400 group-focus-within:text-cyan-400 transition-colors">Transmission Notes</Label>
+              <textarea 
+                id="msg" 
+                className="neon-input min-h-[120px]" 
+                value={form.message} 
+                onChange={(e) => setForm({ ...form, message: e.target.value })} 
+                placeholder="Any specific requirements?" 
+              />
             </div>
-            <Button type="submit" disabled={loading} size="lg" className="bg-gradient-primary hover:opacity-90 text-slate-950 font-bold uppercase tracking-[0.2em] py-7 shadow-neon border-0 mt-4">
-              {loading ? "Transmitting..." : "Execute Enrollment"}
-            </Button>
+            <button type="submit" disabled={loading} className="btn-primary py-5 mt-6 uppercase tracking-[0.3em] text-xs">
+              {loading ? "Transmitting..." : "Execute Enrollment Protocol"}
+            </button>
           </form>
         </div>
 
-        <div className="lg:col-span-2 space-y-8">
-          <div className="glass-panel p-8 rounded-2xl border-white/5">
-            <h3 className="font-display font-bold text-lg mb-6 text-cyan-400 uppercase tracking-widest">Fee Protocols</h3>
-            <div className="space-y-4">
+        <div className="lg:col-span-2 space-y-12">
+          <div className="glass-panel p-10 border-white/5 relative overflow-hidden group">
+            <div className="absolute top-0 right-0 w-32 h-32 bg-cyan-500/5 blur-3xl rounded-full -mr-16 -mt-16 group-hover:bg-cyan-500/10 transition-colors"></div>
+            <h3 className="font-display font-bold text-xl mb-8 text-cyan-400 uppercase tracking-[0.2em]">Fee Protocols</h3>
+            <div className="space-y-6">
               {courses.slice(0, 6).map((c) => (
-                <div key={c.slug} className="flex justify-between border-b border-white/5 pb-3 group">
-                  <span className="text-sm text-slate-400 group-hover:text-white transition-colors">{c.title}</span>
-                  <span className="font-bold text-emerald-400 text-sm">{c.fees}</span>
+                <div key={c.slug} className="flex justify-between border-b border-white/5 pb-4 group/item">
+                  <span className="text-sm text-slate-400 group-hover/item:text-white transition-colors">{c.title}</span>
+                  <span className="font-bold text-emerald-400 text-sm shadow-emerald-500/20">{c.fees}</span>
                 </div>
               ))}
             </div>
-            <p className="text-[10px] text-slate-500 mt-6 font-bold uppercase tracking-widest">* Multi-stage payment nodes available</p>
+            <p className="text-[10px] text-slate-500 mt-8 font-bold uppercase tracking-widest border-t border-white/5 pt-6 italic">* Multi-stage payment nodes available</p>
           </div>
 
-          <div className="bg-gradient-to-br from-cyan-600 to-emerald-600 p-8 rounded-2xl shadow-neon group">
-            <h3 className="font-display font-bold text-lg mb-4 text-slate-950 uppercase tracking-widest">Critical Cycles</h3>
-            <ul className="space-y-4 text-sm font-bold text-slate-900">
-              <li className="flex gap-3"><CheckCircle2 className="h-5 w-5 flex-none text-white/50" /> New batches: 01 of every month</li>
-              <li className="flex gap-3"><CheckCircle2 className="h-5 w-5 flex-none text-white/50" /> HS-CIT Exam: Quarterly cycles</li>
-              <li className="flex gap-3"><CheckCircle2 className="h-5 w-5 flex-none text-white/50" /> Deadline: 25th of month</li>
+          <div className="bg-gradient-to-br from-[#06b6d4] to-[#10b981] p-10 rounded-2xl shadow-neon group relative overflow-hidden">
+            <div className="absolute inset-0 bg-black/10 group-hover:bg-black/0 transition-colors"></div>
+            <h3 className="font-display font-bold text-xl mb-6 text-slate-950 uppercase tracking-[0.2em] relative z-10">Critical Cycles</h3>
+            <ul className="space-y-5 text-sm font-bold text-slate-900 relative z-10">
+              <li className="flex gap-4 items-center"><CheckCircle2 className="h-5 w-5 flex-none text-white/70 shadow-sm" /> New batches: 01 of every month</li>
+              <li className="flex gap-4 items-center"><CheckCircle2 className="h-5 w-5 flex-none text-white/70 shadow-sm" /> HS-CIT Exam: Quarterly cycles</li>
+              <li className="flex gap-4 items-center"><CheckCircle2 className="h-5 w-5 flex-none text-white/70 shadow-sm" /> Deadline: 25th of month</li>
             </ul>
           </div>
 
-          <div className="glass-panel p-8 rounded-2xl border-white/5 text-center group">
-            <h3 className="font-display font-bold text-lg mb-2 text-white">Digital Brochure</h3>
-            <p className="text-xs text-slate-500 mb-6 font-bold uppercase tracking-widest">System details & Curriculum</p>
-            <Button variant="outline" className="w-full border-slate-800 text-slate-400 hover:text-cyan-400 hover:bg-cyan-500/10 py-6" onClick={() => toast.info("Encryption active. Brochure coming soon.")}>
-              <Download className="mr-2 h-4 w-4" /> ACCESS DATA
-            </Button>
+          <div className="glass-panel p-10 border-white/5 text-center group">
+            <h3 className="font-display font-bold text-xl mb-3 text-white uppercase tracking-[0.1em]">Digital Brochure</h3>
+            <p className="text-[10px] text-slate-500 mb-8 font-bold uppercase tracking-[0.2em]">System details & Curriculum</p>
+            <button 
+              className="w-full py-4 border border-slate-800 text-slate-400 font-bold uppercase tracking-widest text-[10px] hover:text-cyan-400 hover:bg-cyan-500/10 transition-all rounded-lg" 
+              onClick={() => toast.info("Encryption active. Brochure coming soon.")}
+            >
+              <Download className="inline-block mr-3 h-4 w-4" /> ACCESS DATA
+            </button>
           </div>
         </div>
       </div>

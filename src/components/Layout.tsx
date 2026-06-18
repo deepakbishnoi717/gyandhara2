@@ -16,39 +16,38 @@ const WHATSAPP = "918199073036";
 export function Header() {
   const [open, setOpen] = useState(false);
   return (
-    <header className="sticky top-0 z-50 w-full glass-panel border-b border-white/5">
-      <div className="bg-gradient-primary text-primary-foreground text-xs shadow-neon">
+    <header className="sticky top-0 z-50 w-full glass-panel !rounded-none border-x-0 border-t-0 border-b border-cyan-500/15 backdrop-blur-xl">
+      <div className="bg-gradient-primary text-slate-950 text-[10px] font-bold uppercase tracking-[0.2em] shadow-neon">
         <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-1.5">
-          <span className="hidden sm:inline font-medium">📍 Tohana, Haryana · HKCL Recognized Institute</span>
+          <span className="hidden sm:inline">📍 Tohana, Haryana · HKCL Recognized Institute</span>
           <div className="flex items-center gap-4">
-            <a href="tel:+918199073036" className="flex items-center gap-1 hover:text-cyan-200 transition-colors">
+            <a href="tel:+918199073036" className="flex items-center gap-1.5 hover:text-white transition-colors">
               <Phone className="h-3 w-3" /> 81990-73036
-            </a>
-            <a href="mailto:info@gyandharatohana.com" className="hidden md:flex items-center gap-1 hover:text-cyan-200 transition-colors">
-              <Mail className="h-3 w-3" /> info@gyandharatohana.com
             </a>
           </div>
         </div>
       </div>
-      <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-3">
-        <Link to="/" className="flex items-center gap-3 group">
-          <div className="flex h-11 w-11 items-center justify-center rounded-lg bg-gradient-primary text-primary-foreground font-display font-bold text-lg shadow-neon group-hover:rotate-[360deg] transition-transform duration-700">
+      <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-4">
+        <Link to="/" className="flex items-center gap-4 group">
+          <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-primary text-slate-950 font-display font-bold text-xl shadow-neon group-hover:rotate-[360deg] transition-transform duration-700">
             GD
           </div>
           <div className="leading-tight">
-            <div className="font-display text-base font-bold text-foreground sm:text-lg group-hover:text-cyan-400 transition-colors">Gyan Dhara Institute</div>
-            <div className="text-[11px] text-muted-foreground group-hover:text-cyan-500 transition-colors uppercase tracking-wider">Tohana · HKCL Certified</div>
+            <div className="font-display text-lg font-bold text-white group-hover:text-cyan-400 transition-colors uppercase tracking-tight">Gyan Dhara Institute</div>
+            <div className="text-[10px] text-slate-500 group-hover:text-cyan-500 transition-colors uppercase tracking-[0.2em] font-bold">Tohana · HKCL Certified</div>
           </div>
         </Link>
-        <nav className="hidden lg:flex items-center gap-1">
+        <nav className="hidden lg:flex items-center gap-2">
           {nav.map((n) => (
             <NavLink
               key={n.to}
               to={n.to}
               end={n.to === "/"}
               className={({ isActive }) =>
-                `px-4 py-2 text-sm font-semibold rounded-md transition-all duration-300 hover:text-cyan-400 hover:bg-white/5 ${
-                  isActive ? "text-cyan-400 bg-cyan-500/10 border border-cyan-500/20 shadow-[0_0_15px_rgba(6,182,212,0.1)]" : "text-foreground/80"
+                `px-5 py-2 text-[11px] font-bold uppercase tracking-[0.2em] rounded-lg transition-all duration-500 ${
+                  isActive 
+                    ? "text-cyan-400 bg-cyan-500/10 border border-cyan-500/30 shadow-[0_0_20px_rgba(6,182,212,0.2)] text-shadow-neon" 
+                    : "text-slate-400 hover:text-cyan-400 hover:bg-white/5"
                 }`
               }
             >
@@ -56,24 +55,24 @@ export function Header() {
             </NavLink>
           ))}
         </nav>
-        <div className="flex items-center gap-2">
-          <Button asChild size="sm" className="hidden sm:inline-flex bg-gradient-primary hover:opacity-90 shadow-neon border-0">
-            <Link to="/admissions">Enroll Now</Link>
-          </Button>
-          <button className="lg:hidden p-2 text-foreground/80 hover:text-cyan-400 transition-colors" onClick={() => setOpen(!open)} aria-label="Menu">
-            {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+        <div className="flex items-center gap-3">
+          <Link to="/admissions" className="btn-primary hidden sm:inline-flex py-3 px-6 text-[10px] uppercase tracking-widest">
+            Enroll Now
+          </Link>
+          <button className="lg:hidden p-2 text-slate-400 hover:text-cyan-400 transition-colors" onClick={() => setOpen(!open)} aria-label="Menu">
+            {open ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
           </button>
         </div>
       </div>
       {open && (
-        <div className="lg:hidden border-t border-white/5 glass-panel">
-          <nav className="mx-auto flex max-w-7xl flex-col px-4 py-2">
+        <div className="lg:hidden border-t border-cyan-500/10 bg-[#020817]/95 backdrop-blur-2xl">
+          <nav className="mx-auto flex flex-col px-4 py-4">
             {nav.map((n) => (
               <Link
                 key={n.to}
                 to={n.to}
                 onClick={() => setOpen(false)}
-                className="py-3 text-sm font-semibold border-b border-white/5 last:border-0 hover:text-cyan-400 transition-colors"
+                className="py-4 text-xs font-bold uppercase tracking-[0.3em] border-b border-white/5 last:border-0 text-slate-400 hover:text-cyan-400 transition-all"
               >
                 {n.label}
               </Link>
@@ -81,59 +80,65 @@ export function Header() {
           </nav>
         </div>
       )}
+      <style>{`
+        .text-shadow-neon {
+          text-shadow: 0 0 10px rgba(6, 182, 212, 0.8);
+        }
+      `}</style>
     </header>
   );
 }
 
 export function Footer() {
   return (
-    <footer className="bg-slate-950 text-background mt-20 border-t border-white/5">
-      <div className="mx-auto max-w-7xl px-4 py-14 grid gap-10 md:grid-cols-2 lg:grid-cols-4">
+    <footer className="bg-[#020817] text-slate-400 mt-32 border-t border-cyan-500/10 relative overflow-hidden">
+      <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-cyan-500/50 to-transparent"></div>
+      <div className="mx-auto max-w-7xl px-4 py-20 grid gap-16 md:grid-cols-2 lg:grid-cols-4">
         <div>
-          <div className="flex items-center gap-3 mb-4">
-            <div className="flex h-11 w-11 items-center justify-center rounded-lg bg-gradient-primary font-display font-bold shadow-neon">GD</div>
-            <div className="font-display font-bold text-lg text-white">Gyan Dhara Institute</div>
+          <div className="flex items-center gap-4 mb-8">
+            <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-primary font-display font-bold text-slate-950 shadow-neon">GD</div>
+            <div className="font-display font-bold text-xl text-white uppercase tracking-tight">Gyan Dhara</div>
           </div>
-          <p className="text-sm opacity-75 leading-relaxed">
-            Computer Sikhna Ab Hua Aasan! HKCL recognized computer training & coaching center serving Tohana since 2025.
+          <p className="text-sm leading-relaxed opacity-70 mb-8 italic border-l-2 border-cyan-500/20 pl-4">
+            Architecting the future of tech education in Tohana. HKCL recognized computer training hub since 2025.
           </p>
-          <div className="flex gap-3 mt-4">
-            <a href="https://instagram.com/gyandharainstitutetohana" target="_blank" rel="noreferrer" className="p-2 rounded-md glass-panel hover:border-cyan-500/50 transition-all duration-300">
-              <Instagram className="h-4 w-4" />
+          <div className="flex gap-4">
+            <a href="https://instagram.com/gyandharainstitutetohana" target="_blank" rel="noreferrer" className="p-3 rounded-lg glass-panel hover:border-cyan-500/50 transition-all duration-500 group">
+              <Instagram className="h-5 w-5 group-hover:text-cyan-400" />
             </a>
-            <a href="https://facebook.com/gyandharainstitutetohana" target="_blank" rel="noreferrer" className="p-2 rounded-md glass-panel hover:border-emerald-500/50 transition-all duration-300">
-              <Facebook className="h-4 w-4" />
+            <a href="https://facebook.com/gyandharainstitutetohana" target="_blank" rel="noreferrer" className="p-3 rounded-lg glass-panel hover:border-emerald-500/50 transition-all duration-500 group">
+              <Facebook className="h-5 w-5 group-hover:text-emerald-400" />
             </a>
           </div>
         </div>
         <div>
-          <h4 className="font-display font-bold mb-4 text-cyan-400 uppercase tracking-widest text-xs">Quick Links</h4>
-          <ul className="space-y-2 text-sm opacity-80">
+          <h4 className="font-display font-bold mb-8 text-cyan-400 uppercase tracking-[0.3em] text-[10px]">Active Nodes</h4>
+          <ul className="space-y-4 text-xs font-bold uppercase tracking-[0.1em]">
             {nav.map((n) => (
-              <li key={n.to}><Link to={n.to} className="hover:text-cyan-400 transition-colors">{n.label}</Link></li>
+              <li key={n.to}><Link to={n.to} className="hover:text-cyan-400 transition-colors flex items-center gap-2 group"><div className="w-1 h-1 bg-cyan-500/30 group-hover:bg-cyan-400 rounded-full transition-colors"></div>{n.label}</Link></li>
             ))}
           </ul>
         </div>
         <div>
-          <h4 className="font-display font-bold mb-4 text-cyan-400 uppercase tracking-widest text-xs">Contact</h4>
-          <ul className="space-y-3 text-sm opacity-80">
-            <li className="flex gap-2"><MapPin className="h-4 w-4 mt-0.5 flex-none text-emerald-500" /> New Sabzi Mandi Road, near Bus Stand, Krishna Colony, Tohana, Haryana 125120</li>
-            <li className="flex gap-2"><Phone className="h-4 w-4 mt-0.5 flex-none text-emerald-500" /> 81990-73036, 97051-06001, 81686-33782</li>
+          <h4 className="font-display font-bold mb-8 text-cyan-400 uppercase tracking-[0.3em] text-[10px]">Coordinates</h4>
+          <ul className="space-y-6 text-sm opacity-80">
+            <li className="flex gap-4"><MapPin className="h-5 w-5 mt-1 flex-none text-emerald-500" /> <span className="leading-relaxed">New Sabzi Mandi Road, near Bus Stand, Krishna Colony, Tohana, Haryana 125120</span></li>
+            <li className="flex gap-4"><Phone className="h-5 w-5 mt-1 flex-none text-emerald-500" /> <span className="font-bold">81990-73036, 97051-06001</span></li>
           </ul>
         </div>
         <div>
-          <h4 className="font-display font-bold mb-4 text-cyan-400 uppercase tracking-widest text-xs">Hours</h4>
-          <p className="text-sm opacity-80 mb-6">Mon – Sat: 9:00 AM – 5:00 PM<br/>Sunday: Closed</p>
-          <h4 className="font-display font-bold mb-2 text-cyan-400 uppercase tracking-widest text-xs">Legal</h4>
-          <ul className="space-y-1 text-sm opacity-80">
-            <li><a href="#" className="hover:text-cyan-400 transition-colors">Privacy Policy</a></li>
-            <li><a href="#" className="hover:text-cyan-400 transition-colors">Terms & Conditions</a></li>
+          <h4 className="font-display font-bold mb-8 text-cyan-400 uppercase tracking-[0.3em] text-[10px]">Operational Hours</h4>
+          <p className="text-sm opacity-80 mb-8 border-l-2 border-emerald-500/20 pl-4">Mon – Sat: 09:00 – 17:00<br/>Sunday: Offline</p>
+          <h4 className="font-display font-bold mb-4 text-cyan-400 uppercase tracking-[0.3em] text-[10px]">Legal Protocol</h4>
+          <ul className="space-y-2 text-xs font-bold uppercase tracking-[0.1em]">
+            <li><a href="#" className="hover:text-cyan-400 transition-colors">Privacy_Policy.exe</a></li>
+            <li><a href="#" className="hover:text-cyan-400 transition-colors">Terms_of_Service.sys</a></li>
           </ul>
         </div>
       </div>
-      <div className="border-t border-white/5 bg-black/20">
-        <div className="mx-auto max-w-7xl px-4 py-5 text-[10px] uppercase tracking-[0.2em] opacity-50 text-center">
-          © 2025 Gyan Dhara Institute Tohana. All Rights Reserved.
+      <div className="border-t border-white/5 bg-black/40">
+        <div className="mx-auto max-w-7xl px-4 py-8 text-[9px] uppercase tracking-[0.4em] opacity-40 text-center font-bold">
+          © 2025 Gyan Dhara Institute Tohana. All Systems Operational.
         </div>
       </div>
     </footer>

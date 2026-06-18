@@ -18,7 +18,7 @@ const CircuitRipple: React.FC = () => {
     setRipples((prev) => [...prev, newRipple]);
     setTimeout(() => {
       setRipples((prev) => prev.filter((r) => r.id !== newRipple.id));
-    }, 1000);
+    }, 600);
   }, []);
 
   useEffect(() => {
@@ -27,30 +27,45 @@ const CircuitRipple: React.FC = () => {
   }, [addRipple]);
 
   return (
-    <div className="fixed inset-0 pointer-events-none z-[9999] overflow-hidden">
+    <div className="fixed inset-0 pointer-events-none z-[100] overflow-hidden">
       {ripples.map((ripple) => (
         <div
           key={ripple.id}
-          className="absolute animate-circuit-ripple"
+          className="click-ripple"
           style={{
             left: ripple.x,
             top: ripple.y,
-            transform: 'translate(-50%, -50%)',
           }}
         >
-          <div className="absolute inset-0 rounded-full border-2 border-cyan-500 shadow-[0_0_20px_#06b6d4] scale-0 animate-pulse-fast" />
-          <div className="absolute inset-0 rounded-full border border-emerald-500/50 scale-0 animate-pulse-slow" />
+          <div className="inner-ripple" />
         </div>
       ))}
       <style>{`
-        @keyframes circuit-ripple {
-          0% { transform: translate(-50%, -50%) scale(0); opacity: 1; }
-          100% { transform: translate(-50%, -50%) scale(4); opacity: 0; }
+        .click-ripple {
+          position: fixed;
+          border-radius: 50%;
+          border: 1.5px solid rgba(6, 182, 212, 0.8);
+          box-shadow: 0 0 12px rgba(6, 182, 212, 0.4),
+                      inset 0 0 8px rgba(6, 182, 212, 0.1);
+          pointer-events: none;
+          z-index: 100;
+          animation: ripple-expand 0.6s ease-out forwards;
+          transform: translate(-50%, -50%);
+          width: 0;
+          height: 0;
         }
-        .animate-circuit-ripple {
-          width: 100px;
-          height: 100px;
-          animation: circuit-ripple 0.8s cubic-bezier(0, 0, 0.2, 1) forwards;
+
+        .inner-ripple {
+          position: absolute;
+          inset: 20%;
+          border-radius: 50%;
+          border: 1px solid rgba(6, 182, 212, 0.3);
+          clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+        }
+
+        @keyframes ripple-expand {
+          0%   { width: 0px; height: 0px; opacity: 1; }
+          100% { width: 120px; height: 120px; opacity: 0; }
         }
       `}</style>
     </div>
