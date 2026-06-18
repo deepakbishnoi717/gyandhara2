@@ -5,8 +5,6 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Textarea } from "@/components/ui/textarea";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { toast } from "sonner";
 import { courses } from "@/lib/courses";
 import { z } from "zod";
@@ -111,14 +109,19 @@ export default function Admissions() {
               </div>
               <div className="grid gap-3 group">
                 <Label className="text-[10px] font-bold uppercase tracking-[0.2em] text-slate-400 group-focus-within:text-cyan-400 transition-colors">Neural Node Interest *</Label>
-                <Select value={form.course} onValueChange={(v) => setForm({ ...form, course: v })}>
-                  <SelectTrigger className="neon-input border-0 h-[48px] bg-slate-900/50">
-                    <SelectValue placeholder="Select Module" />
-                  </SelectTrigger>
-                  <SelectContent className="bg-slate-900 border-cyan-500/20 text-slate-300 z-[9999]">
-                    {courses.map((c) => <SelectItem key={c.slug} value={c.title} className="focus:bg-cyan-500 focus:text-slate-950">{c.title}</SelectItem>)}
-                  </SelectContent>
-                </Select>
+                <select 
+                  className="neon-input h-[48px] bg-slate-900/50 appearance-none cursor-pointer text-slate-300 focus:text-white"
+                  value={form.course} 
+                  onChange={(e) => setForm({ ...form, course: e.target.value })}
+                  required
+                >
+                  <option value="" disabled className="bg-slate-900 text-slate-500">Select Module...</option>
+                  {courses.map((c) => (
+                    <option key={c.slug} value={c.title} className="bg-slate-900 text-slate-300 py-2">
+                      {c.title}
+                    </option>
+                  ))}
+                </select>
               </div>
             </div>
             <div className="grid gap-3 group">
