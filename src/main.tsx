@@ -19,26 +19,27 @@ const queryClient = new QueryClient();
 
 const AnimatedRoutes = () => {
   const location = useLocation();
-  const [activeFace, setActiveFace] = useState("home");
-  const [rotation, setRotation] = useState(0);
+  const [rotation, setRotation] = useState({ y: 0, x: 0 });
 
   const paths = ["/", "/about", "/courses", "/admissions", "/contact"];
-  const faces = ["home", "about", "courses", "admissions", "contact"];
-
+  
   useEffect(() => {
-    const currentIndex = paths.indexOf(location.pathname);
-    if (currentIndex !== -1) {
-      const face = faces[currentIndex];
-      setActiveFace(face);
-      setRotation(currentIndex * -90);
+    const index = paths.indexOf(location.pathname);
+    if (index === 0) setRotation({ y: 0, x: 0 });
+    else if (index === 1) setRotation({ y: -90, x: 0 });
+    else if (index === 2) setRotation({ y: -180, x: 0 });
+    else if (index === 3) setRotation({ y: -270, x: 0 });
+    else if (index === 4) setRotation({ y: 0, x: -90 }); // Top face for Contact
 
-      // Scroll the target face to top after rotation
-      setTimeout(() => {
-        const faceElement = document.querySelector(`.face-${face}`);
-        if (faceElement) faceElement.scrollTo({ top: 0, behavior: "smooth" });
-      }, 850);
-    }
+    // Scroll the active face to top
+    setTimeout(() => {
+      const activeFaceClass = index === 4 ? ".face-contact" : `.face-${["home", "about", "courses", "admissions"][index]}`;
+      const faceElement = document.querySelector(activeFaceClass);
+      if (faceElement) faceElement.scrollTo({ top: 0, behavior: "smooth" });
+    }, 850);
   }, [location.pathname]);
+
+  const isNotFound = paths.indexOf(location.pathname) === -1;
 
   return (
     <div className="cube-viewport">
@@ -47,34 +48,51 @@ const AnimatedRoutes = () => {
       
       <div 
         className="cube-container" 
-        style={{ transform: `rotateY(${rotation}deg)` }}
+        style={{ transform: `rotateY(${rotation.y}deg) rotateX(${rotation.x}deg)` }}
       >
+        {/* Face 1: Home */}
         <div className="cube-face face-home">
           <Routes location={location}>
             <Route path="/" element={<Home />} />
           </Routes>
         </div>
+
+        {/* Face 2: About */}
         <div className="cube-face face-about">
           <Routes location={location}>
             <Route path="/about" element={<About />} />
           </Routes>
         </div>
+
+        {/* Face 3: Courses */}
         <div className="cube-face face-courses">
           <Routes location={location}>
             <Route path="/courses" element={<Courses />} />
           </Routes>
         </div>
+
+        {/* Face 4: Admissions */}
         <div className="cube-face face-admissions">
           <Routes location={location}>
             <Route path="/admissions" element={<Admissions />} />
           </Routes>
         </div>
+
+        {/* Face 5: Contact (Top) */}
         <div className="cube-face face-contact">
           <Routes location={location}>
             <Route path="/contact" element={<Contact />} />
-            <Route path="*" element={<NotFound />} />
           </Routes>
         </div>
+
+        {/* NotFound Overlay - only renders when path doesn't match any face */}
+        {isNotFound && (
+          <div className="cube-face face-notfound">
+             <Routes location={location}>
+               <Route path="*" element={<NotFound />} />
+             </Routes>
+          </div>
+        )}
       </div>
 
       <style>{`
@@ -114,29 +132,20 @@ const AnimatedRoutes = () => {
         .face-about      { transform: rotateY(90deg) translateZ(50vw); }
         .face-courses    { transform: rotateY(180deg) translateZ(50vw); }
         .face-admissions { transform: rotateY(270deg) translateZ(50vw); }
-        .face-contact    { transform: rotateY(360deg) translateZ(50vw); }
+        .face-contact    { transform: rotateX(90deg) translateZ(50vw); }
+        .face-notfound   { transform: translateZ(51vw); background: #020817; backface-visibility: visible; }
 
-        /* Hide scrollbars for cleaner look but keep functionality */
-        .cube-face::-webkit-scrollbar {
-          width: 4px;
-        }
-        .cube-face::-webkit-scrollbar-track {
-          background: rgba(2, 8, 23, 0.5);
-        }
-        .cube-face::-webkit-scrollbar-thumb {
-          background: rgba(6, 182, 212, 0.3);
-          border-radius: 2px;
-        }
-        .cube-face::-webkit-scrollbar-thumb:hover {
-          background: rgba(6, 182, 212, 0.5);
-        }
+        /* Hide scrollbars but keep functionality */
+        .cube-face::-webkit-scrollbar { width: 4px; }
+        .cube-face::-webkit-scrollbar-track { background: rgba(2, 8, 23, 0.5); }
+        .cube-face::-webkit-scrollbar-thumb { background: rgba(6, 182, 212, 0.3); border-radius: 2px; }
 
         @media (max-width: 768px) {
            .face-home       { transform: rotateY(0deg) translateZ(50vw); }
            .face-about      { transform: rotateY(90deg) translateZ(50vw); }
            .face-courses    { transform: rotateY(180deg) translateZ(50vw); }
            .face-admissions { transform: rotateY(270deg) translateZ(50vw); }
-           .face-contact    { transform: rotateY(360deg) translateZ(50vw); }
+           .face-contact    { transform: rotateX(90deg) translateZ(50vw); }
         }
       `}</style>
     </div>
