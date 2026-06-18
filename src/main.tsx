@@ -48,7 +48,7 @@ const AnimatedRoutes = () => {
       
       <div 
         className="cube-container" 
-        style={{ transform: `rotateY(${rotation.y}deg) rotateX(${rotation.x}deg)` }}
+        style={{ transform: `translateZ(-50vw) rotateY(${rotation.y}deg) rotateX(${rotation.x}deg)` }}
       >
         {/* Face 1: Home */}
         <div className="cube-face face-home">
@@ -97,7 +97,7 @@ const AnimatedRoutes = () => {
 
       <style>{`
         .cube-viewport {
-          perspective: 1200px;
+          perspective: 2000px;
           perspective-origin: 50% 50%;
           width: 100vw;
           height: 100vh;
